@@ -1,0 +1,495 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--  <title>Home Page - TMGDTD Finance</title>-->
+<!--  <style>-->
+<!--    body {-->
+<!--      font-family: Arial, sans-serif;-->
+<!--      text-align: center;-->
+<!--      margin: 30px;-->
+<!--      background-color: #f9f9f9;-->
+<!--      background-image: url("https://giaiphaperp.vn/wp-content/uploads/2020/11/phan-mem-quan-ly-tai-chinh-doanh-nghiep.jpg"); /* Đường dẫn đến ảnh nền */-->
+<!--        }-->
+<!--    }-->
+
+<!--    h1 {-->
+<!--      color: #007bff;-->
+<!--    }-->
+
+<!--    a {-->
+<!--      display: block;-->
+<!--      margin: 10px;-->
+<!--      padding: 10px 20px;-->
+<!--      text-decoration: none;-->
+<!--      background-color: #007bff;-->
+<!--      color: #fff;-->
+<!--      border-radius: 5px;-->
+<!--      transition: background-color 0.3s;-->
+<!--      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);-->
+<!--    }-->
+
+<!--    a:hover {-->
+<!--      background-color: #0056b3;-->
+<!--    }-->
+
+<!--    form {-->
+<!--      margin-top: 20px;-->
+<!--    }-->
+
+<!--    label {-->
+<!--      font-weight: bold;-->
+<!--    }-->
+
+<!--    input[type="text"] {-->
+<!--      padding: 5px;-->
+<!--      border: 1px solid #ccc;-->
+<!--      border-radius: 5px;-->
+<!--    }-->
+
+<!--    input[type="submit"] {-->
+<!--      padding: 5px 15px;-->
+<!--      background-color: #007bff;-->
+<!--      color: #fff;-->
+<!--      border: none;-->
+<!--      border-radius: 5px;-->
+<!--      cursor: pointer;-->
+<!--      transition: background-color 0.3s;-->
+<!--      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);-->
+<!--    }-->
+
+<!--    input[type="submit"]:hover {-->
+<!--      background-color: #0056b3;-->
+<!--    }-->
+
+<!--    .finance-section {-->
+<!--      background-color: #f5f5f5;-->
+<!--      padding: 20px;-->
+<!--      border-radius: 5px;-->
+<!--      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);-->
+<!--      margin: 20px auto;-->
+<!--      max-width: 500px;-->
+<!--    }-->
+
+<!--    /* Đổi màu nút Delete User thành màu đỏ */-->
+<!--    input[type="submit"].delete-btn {-->
+<!--      background-color: #dc3545;-->
+<!--    }-->
+
+<!--    /* Thêm màu đỏ cho nút "Danh sách người dùng bị ÂM TIỀN" */-->
+<!--    a.negative-btn {-->
+<!--      background-color: #dc3545;-->
+<!--    }-->
+
+<!--    /* Căn đối hai form cùng hàng ngang */-->
+<!--    .form-wrapper {-->
+<!--      display: inline-block;-->
+<!--      margin-right: 20px;-->
+<!--    .finance-section {-->
+<!--      background-color: #f5f5f5;-->
+<!--      padding: 20px;-->
+<!--      border-radius: 5px;-->
+<!--      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);-->
+<!--      margin: 20px auto;-->
+<!--      max-width: 800px; /* Đặt độ rộng tối đa cho section chứa nút */-->
+<!--      display: flex;-->
+<!--      flex-wrap: wrap;-->
+<!--      justify-content: center;-->
+<!--    }-->
+
+<!--    /* Điều chỉnh chiều rộng của các nút trong cột */-->
+<!--    .finance-section a {-->
+<!--      width: 200px;-->
+<!--    }-->
+
+<!--    /* Khoảng cách giữa các nút */-->
+<!--    .finance-section a {-->
+<!--      margin: 10px;-->
+<!--    }-->
+
+<!--    /* Điều chỉnh số lượng nút trên mỗi hàng */-->
+<!--    .finance-section a:nth-child(odd) {-->
+<!--      order: 1;-->
+<!--    }-->
+
+<!--    .finance-section a:nth-child(even) {-->
+<!--      order: 2;-->
+<!--    }-->
+
+<!--  </style>-->
+<!--</head>-->
+<!--<body class="main-background">-->
+<!--<div class="finance-section">-->
+<!--  <h1>Welcome to TMGDTD</h1>-->
+<!--  <div>-->
+<!--    &lt;!&ndash; Sắp xếp các nút thành hai cột theo chiều dọc &ndash;&gt;-->
+<!--    <a href="/add">Thêm người dùng</a>-->
+<!--    <a href="/getall">Danh sách tất cả người dùng</a>-->
+<!--    <a href="/index">Sắp xếp</a>-->
+<!--    <a href="/form">Tính toán</a>-->
+<!--&lt;!&ndash;    <a href="/getAsc">Danh sách người dùng sắp xếp theo sự tăng dần của Total money</a>&ndash;&gt;-->
+<!--&lt;!&ndash;    <a href="/getDesc">Danh sách người dùng sắp xếp theo sự giảm dần của Total money</a>&ndash;&gt;-->
+<!--&lt;!&ndash;    <a href="/selectUsers">Chọn người dùng để trừ tiền(trừ trung bình)</a>&ndash;&gt;-->
+<!--&lt;!&ndash;    <a href="/selectUsers1">Chọn người dùng để cộng tiền(cộng trung bình)</a>&ndash;&gt;-->
+<!--&lt;!&ndash;    <a href="/selectUsers2">Chọn người dùng để trừ tiền(trừ một mình)</a>&ndash;&gt;-->
+<!--&lt;!&ndash;    <a href="/selectUsers3">Chọn người dùng để cộng tiền(cộng một mình)</a>&ndash;&gt;-->
+<!--    <a href="/transactionHistory">Lịch sử giao dịch</a>-->
+<!--    <a href="/updateHistory">Lịch sử thay đổi thông tin</a>-->
+<!--&lt;!&ndash;    <a href="/upload">Upload ảnh(Để trưng bày)</a>&ndash;&gt;-->
+<!--    <a href="https://wheelofnames.com/vi/" target="_blank">TRƯA NAY ĂN MÓN GÌ ???</a>-->
+
+<!--    &lt;!&ndash; Thêm class negative-btn cho nút "Danh sách người dùng bị ÂM TIỀN" &ndash;&gt;-->
+<!--    <a href="/negativebalance" class="negative-btn">Danh sách người dùng bị ÂM TIỀN</a>-->
+<!--  </div>-->
+<!--  <div class="form-wrapper">-->
+<!--    <form action="/getbyid" method="get">-->
+<!--      <label for="id">Enter User ID: </label>-->
+<!--      <input type="number" id="id" name="id" required>-->
+<!--      <input type="submit" value="Get Person by ID">-->
+<!--    </form>-->
+<!--    <p>Powered By Bách Lê</p>-->
+<!--  </div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+<!--scrum-->
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--  <title>Home Page - TMGDTD Finance</title>-->
+<!--  <style>-->
+<!--&lt;!&ndash;        body {&ndash;&gt;-->
+<!--&lt;!&ndash;      font-family: Arial, sans-serif;&ndash;&gt;-->
+<!--&lt;!&ndash;      text-align: center;&ndash;&gt;-->
+<!--&lt;!&ndash;      margin: 30px;&ndash;&gt;-->
+<!--&lt;!&ndash;      background-color: #f9f9f9;&ndash;&gt;-->
+<!--&lt;!&ndash;      background-image: url("https://giaiphaperp.vn/wp-content/uploads/2020/11/phan-mem-quan-ly-tai-chinh-doanh-nghiep.jpg"); /* Đường dẫn đến ảnh nền */&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    h1 {&ndash;&gt;-->
+<!--&lt;!&ndash;      color: #007bff;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    a {&ndash;&gt;-->
+<!--&lt;!&ndash;      display: block;&ndash;&gt;-->
+<!--&lt;!&ndash;      margin: 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;      padding: 10px 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;      text-decoration: none;&ndash;&gt;-->
+<!--&lt;!&ndash;      background-color: #007bff;&ndash;&gt;-->
+<!--&lt;!&ndash;      color: #fff;&ndash;&gt;-->
+<!--&lt;!&ndash;      border-radius: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;      transition: background-color 0.3s;&ndash;&gt;-->
+<!--&lt;!&ndash;      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    a:hover {&ndash;&gt;-->
+<!--&lt;!&ndash;      background-color: #0056b3;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    form {&ndash;&gt;-->
+<!--&lt;!&ndash;      margin-top: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    label {&ndash;&gt;-->
+<!--&lt;!&ndash;      font-weight: bold;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    input[type="text"] {&ndash;&gt;-->
+<!--&lt;!&ndash;      padding: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;      border: 1px solid #ccc;&ndash;&gt;-->
+<!--&lt;!&ndash;      border-radius: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    input[type="submit"] {&ndash;&gt;-->
+<!--&lt;!&ndash;      padding: 5px 15px;&ndash;&gt;-->
+<!--&lt;!&ndash;      background-color: #007bff;&ndash;&gt;-->
+<!--&lt;!&ndash;      color: #fff;&ndash;&gt;-->
+<!--&lt;!&ndash;      border: none;&ndash;&gt;-->
+<!--&lt;!&ndash;      border-radius: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;      cursor: pointer;&ndash;&gt;-->
+<!--&lt;!&ndash;      transition: background-color 0.3s;&ndash;&gt;-->
+<!--&lt;!&ndash;      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    input[type="submit"]:hover {&ndash;&gt;-->
+<!--&lt;!&ndash;      background-color: #0056b3;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    .finance-section {&ndash;&gt;-->
+<!--&lt;!&ndash;      background-color: #f5f5f5;&ndash;&gt;-->
+<!--&lt;!&ndash;      padding: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;      border-radius: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);&ndash;&gt;-->
+<!--&lt;!&ndash;      margin: 20px auto;&ndash;&gt;-->
+<!--&lt;!&ndash;      max-width: 500px;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    /* Đổi màu nút Delete User thành màu đỏ */&ndash;&gt;-->
+<!--&lt;!&ndash;    input[type="submit"].delete-btn {&ndash;&gt;-->
+<!--&lt;!&ndash;      background-color: #dc3545;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    /* Thêm màu đỏ cho nút "Danh sách người dùng bị ÂM TIỀN" */&ndash;&gt;-->
+<!--&lt;!&ndash;    a.negative-btn {&ndash;&gt;-->
+<!--&lt;!&ndash;      background-color: #dc3545;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    /* Căn đối hai form cùng hàng ngang */&ndash;&gt;-->
+<!--&lt;!&ndash;    .form-wrapper {&ndash;&gt;-->
+<!--&lt;!&ndash;      display: inline-block;&ndash;&gt;-->
+<!--&lt;!&ndash;      margin-right: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;    .finance-section {&ndash;&gt;-->
+<!--&lt;!&ndash;      background-color: #f5f5f5;&ndash;&gt;-->
+<!--&lt;!&ndash;      padding: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;      border-radius: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);&ndash;&gt;-->
+<!--&lt;!&ndash;      margin: 20px auto;&ndash;&gt;-->
+<!--&lt;!&ndash;      max-width: 800px; /* Đặt độ rộng tối đa cho section chứa nút */&ndash;&gt;-->
+<!--&lt;!&ndash;      display: flex;&ndash;&gt;-->
+<!--&lt;!&ndash;      flex-wrap: wrap;&ndash;&gt;-->
+<!--&lt;!&ndash;      justify-content: center;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    /* Điều chỉnh chiều rộng của các nút trong cột */&ndash;&gt;-->
+<!--&lt;!&ndash;    .finance-section a {&ndash;&gt;-->
+<!--&lt;!&ndash;      width: 200px;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    /* Khoảng cách giữa các nút */&ndash;&gt;-->
+<!--&lt;!&ndash;    .finance-section a {&ndash;&gt;-->
+<!--&lt;!&ndash;      margin: 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    /* Điều chỉnh số lượng nút trên mỗi hàng */&ndash;&gt;-->
+<!--&lt;!&ndash;    .finance-section a:nth-child(odd) {&ndash;&gt;-->
+<!--&lt;!&ndash;      order: 1;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    .finance-section a:nth-child(even) {&ndash;&gt;-->
+<!--&lt;!&ndash;      order: 2;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--body {-->
+<!--      font-family: Arial, sans-serif;-->
+<!--      text-align: center;-->
+<!--      margin: 30px;-->
+<!--      background-color: #f9f9f9;-->
+<!--      background-image: url("https://giaiphaperp.vn/wp-content/uploads/2020/11/phan-mem-quan-ly-tai-chinh-doanh-nghiep.jpg");-->
+<!--    }-->
+
+<!--    h1 {-->
+<!--      color: #007bff;-->
+<!--    }-->
+
+<!--    /* Your existing styles here */-->
+
+<!--    /* Add CSS for the menu button */-->
+<!--    #menu-button {-->
+<!--      padding: 10px 20px;-->
+<!--      background-color: #007bff;-->
+<!--      color: #fff;-->
+<!--      border: none;-->
+<!--      border-radius: 5px;-->
+<!--      cursor: pointer;-->
+<!--      transition: background-color 0.3s;-->
+<!--      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);-->
+<!--    }-->
+
+<!--    #menu-button:hover {-->
+<!--      background-color: #0056b3;-->
+<!--    }-->
+
+<!--    /* Add CSS for the menu items */-->
+<!--    #menu-items {-->
+<!--      display: flex;-->
+<!--      flex-wrap: wrap;-->
+<!--      justify-content: center;-->
+<!--      margin-top: 10px;-->
+<!--    }-->
+
+<!--    #menu-items a {-->
+<!--      margin: 10px;-->
+<!--      padding: 10px 20px;-->
+<!--      text-decoration: none;-->
+<!--      background-color: #007bff;-->
+<!--      color: #fff;-->
+<!--      border-radius: 5px;-->
+<!--      transition: background-color 0.3s;-->
+<!--      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);-->
+<!--    }-->
+
+<!--    #menu-items a:hover {-->
+<!--      background-color: #0056b3;-->
+<!--    }-->
+<!--  </style>-->
+<!--</head>-->
+<!--<body class="main-background">-->
+<!--<div class="finance-section">-->
+<!--  <h1>Welcome to TMGDTD</h1>-->
+<!--  &lt;!&ndash; Add the menu button &ndash;&gt;-->
+<!--  <button id="menu-button">Menu</button>-->
+<!--  <div id="menu-items" style="display: none;">-->
+<!--    <a href="/add">Thêm người dùng</a>-->
+<!--    <a href="/getall">Danh sách tất cả người dùng</a>-->
+<!--    <a href="/index">Sắp xếp</a>-->
+<!--    <a href="/form">Tính toán</a>-->
+<!--    <a href="/transactionHistory">Lịch sử giao dịch</a>-->
+<!--    <a href="/updateHistory">Lịch sử thay đổi thông tin</a>-->
+<!--    <a href="https://wheelofnames.com/vi/" target="_blank">TRƯA NAY ĂN MÓN GÌ ???</a>-->
+<!--    <a href="/negativebalance" class="negative-btn">Danh sách người dùng bị ÂM TIỀN</a>-->
+<!--    &lt;!&ndash; Add other menu items here &ndash;&gt;-->
+<!--  </div>-->
+<!--  <div class="form-wrapper">-->
+<!--&lt;!&ndash;    <form action="/getbyid" method="get">&ndash;&gt;-->
+<!--&lt;!&ndash;      <label for="id">Enter User ID: </label>&ndash;&gt;-->
+<!--&lt;!&ndash;      <input type="number" id="id" name="id" required>&ndash;&gt;-->
+<!--&lt;!&ndash;      <input type="submit" value="Get Person by ID">&ndash;&gt;-->
+<!--&lt;!&ndash;    </form>&ndash;&gt;-->
+<!--&lt;!&ndash;    <p>Powered By Bách Lê</p>&ndash;&gt;-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Add the following script at the end of the body tag &ndash;&gt;-->
+<!--<script>-->
+<!--    const menuButton = document.getElementById('menu-button');-->
+<!--    const menuItems = document.getElementById('menu-items');-->
+
+<!--    // Add a click event listener to the menu button-->
+<!--    menuButton.addEventListener('click', () => {-->
+<!--      // Toggle the display property of the menu items-->
+<!--      if (menuItems.style.display === 'none') {-->
+<!--        menuItems.style.display = 'block';-->
+<!--      } else {-->
+<!--        menuItems.style.display = 'none';-->
+<!--      }-->
+<!--    });-->
+<!--  </script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home Page - TMGDTD Finance</title>
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 30px;
+      background-color: #f9f9f9;
+      background-image: url("https://giaiphaperp.vn/wp-content/uploads/2020/11/phan-mem-quan-ly-tai-chinh-doanh-nghiep.jpg");
+    }
+
+    h1 {
+      color: #007bff;
+    }
+
+    .finance-section {
+      background-color: #f5f5f5;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #menu-button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      font-size: 16px;
+    }
+
+    #menu-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.1); /* Tăng kích thước nút khi hover */
+  transition: background-color 0.3s, transform 0.3s; /* Thêm hiệu ứng chuyển đổi trong 0.3 giây */
+}
+
+    #menu-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 10px;
+      animation: fade-in 0.5s ease;
+    }
+
+    #menu-items a {
+      margin: 10px;
+      padding: 15px 25px;
+      text-decoration: none;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 10px;
+      transition: background-color 0.3s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #menu-items a:hover {
+      background-color: #0056b3;
+    }
+
+    /* Styling for the "Powered By" paragraph */
+    .form-wrapper p {
+      font-size: 12px;
+      margin-top: 10px;
+      color: #666;
+    }
+
+    /* Animation for menu items fade-in */
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    </style>
+</head>
+<body class="main-background">
+<div class="finance-section">
+    <h1>Welcome to TMGDTD</h1>
+    <!-- Add the menu button -->
+    <button id="menu-button">Menu</button>
+    <div id="menu-items" style="display: none;">
+        <a href="/add">Thêm người dùng</a>
+        <a href="/getall">Danh sách tất cả người dùng</a>
+        <a href="/form">Tính toán</a>
+        <a href="/transactionHistory">Lịch sử giao dịch</a>
+        <a href="/updateHistory">Lịch sử thay đổi thông tin</a>
+        <a href="/search">Tìm kiếm</a>
+        <a href="https://wheelofnames.com/vi/" target="_blank">TRƯA NAY ĂN MÓN GÌ ???</a>
+        <!--    <a href="/negativebalance" class="negative-btn">Danh sách người dùng bị ÂM TIỀN</a>-->
+        <!-- Add other menu items here -->
+    </div>
+    <div class="form-wrapper">
+        <p>Powered By Bách Lê</p>
+    </div>
+</div>
+
+<!-- Add the following script at the end of the body tag -->
+<script>
+    const menuButton = document.getElementById('menu-button');
+    const menuItems = document.getElementById('menu-items');
+
+    // Add a click event listener to the menu button
+    menuButton.addEventListener('click', () => {
+      // Toggle the display property of the menu items
+      if (menuItems.style.display === 'none') {
+        menuItems.style.display = 'flex';
+      } else {
+        menuItems.style.display = 'none';
+      }
+    });
+
+</script>
+</body>
+</html>

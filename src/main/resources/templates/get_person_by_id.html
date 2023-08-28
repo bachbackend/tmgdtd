@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>User Information - TMGDTD Finance</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 30px;
+      background-color: #f9f9f9;
+    }
+
+    h1 {
+      color: #007bff;
+    }
+
+    p {
+      font-weight: bold;
+    }
+
+    span {
+      color: #007bff;
+    }
+
+    a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      text-decoration: none;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    a:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+<h1>User Information - TMGDTD Finance</h1>
+<p>ID: <span th:text="${person.id}"></span></p>
+<p>Name: <span th:text="${person.name}"></span></p>
+<p>Age: <span th:text="${person.age}"></span></p>
+<p>Email: <span th:text="${person.email}"></span></p>
+<p>Phone Number: <span th:text="${person.phoneNumber}"></span></p>
+<p>Total money: <span th:text="${person.formattedTotalMoney}"></span></p>
+<a href="/">Back to Home</a>
+</body>
+</html>

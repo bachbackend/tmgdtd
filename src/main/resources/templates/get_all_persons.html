@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:search="com.example.jpa.entity">
+<head>
+  <title>All Users - TMGDTD Finance</title>
+  <style>
+         body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 30px;
+      background-color: #f9f9f9;
+    }
+
+    h1 {
+      color: #007bff;
+    }
+
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 10px 20px;
+      border-bottom: 1px solid #ccc;
+      text-align: left;
+    }
+
+    th {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      text-decoration: none;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    a:hover {
+      background-color: #0056b3;
+    }
+        .delete-link {
+            background-color: #dc3545; /* Màu đỏ */
+        }
+    </style>
+</head>
+<body>
+<h1>All Users - TMGDTD Finance</h1>
+
+
+
+
+<!--<form th:action="@{/personsSearch}" th:object="${searchForm}" method="post">-->
+<!--  <input type="text" search:field="*{name}" placeholder="Search by name" />-->
+<!--  <button type="submit">Search</button>-->
+<!--</form>-->
+
+<!--<form action="/personsSearch" method="post">-->
+<!--  <input type="text" name="name" placeholder="Search by name" />-->
+<!--  <button type="submit">Search</button>-->
+<!--</form>-->
+
+
+<form th:action="@{/personsSort}" th:object="${sortForm}" method="post">
+  <select name="sortOrder" th:field="*{sortOrder}">
+    <option value="asc">Tăng dần theo total money</option>
+    <option value="desc">Giảm dần theo total money</option>
+    <option value="asc1">Sắp xếp theo tên(A->Z)</option>
+    <option value="desc1">Sắp xếp theo tên(Z->A)</option>
+  </select>
+  <button  type="submit">Sort</button>
+</form>
+
+<button onclick="@{/personsSort}">Click</button>
+
+<!--<form th:action="@{/personsSearch}" th:object="${searchForm}" method="post">-->
+<!--  <input type="text" th:field="*{name}" placeholder="Search by name" />-->
+<!--  <button type="submit">Search</button>-->
+<!--</form>-->
+
+
+
+
+
+
+
+
+
+<!--<form action="/personsSearch" method="post">-->
+<!--  <input type="text" name="name" placeholder="Search by name" />-->
+<!--  <button type="submit">Search</button>-->
+<!--</form>-->
+
+<a href="/negativebalance" class="negative-btn">Người dùng bị âm tiền</a>
+
+
+
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Email</th>
+    <th>Phone Number</th>
+    <th>Total money</th>
+    <th>Actions</th>
+  </tr>
+  <tr th:each="person : ${persons}">
+    <td th:text="${person.id}"></td>
+    <td th:text="${person.name}"></td>
+    <td th:text="${person.age}"></td>
+    <td th:text="${person.email}"></td>
+    <td th:text="${person.phoneNumber}"></td>
+    <td th:text="${person.formattedTotalMoney}"></td>
+    <td>
+      <a th:href="@{/getall/{id}(id=${person.id})}">View</a> |
+      <a th:href="@{/getall/{id}/edit(id=${person.id})}">Update</a> |
+      <a href="/delete" th:attr="data-id=${person.id}" class="delete-link">Delete</a>
+<!--      <a href="#" onclick="deletePerson(${person.id});">Delete</a>-->
+
+    </td>
+  </tr>
+</table>
+<br>
+<a href="/">Back to Home</a>
+
+<!-- Script thêm vào cuối trang -->
+<script>
+    // Lắng nghe sự kiện click cho các nút delete
+    document.querySelectorAll('.delete-link').forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+            const id = this.getAttribute('data-id');
+            const shouldDelete = confirm('Bạn có chắc muốn xóa người dùng có ID ' + id + ' không?');
+            if (shouldDelete) {
+                // Nếu người dùng đồng ý xóa, thực hiện chuyển hướng đến endpoint xóa
+                window.location.href = '/getall/' + id + '/delete';
+            }
+        });
+    });
+
+<!--    function deletePerson(personId) {-->
+<!--    if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {-->
+<!--        const xhr = new XMLHttpRequest();-->
+<!--        xhr.open("DELETE", `/api/persons/${personId}`, true);-->
+<!--        xhr.onreadystatechange = function () {-->
+<!--            if (xhr.readyState === 4) {-->
+<!--                if (xhr.status === 200) {-->
+<!--                    location.reload(); // Hoặc cập nhật danh sách người dùng.-->
+<!--                } else {-->
+<!--                    alert("Có lỗi xảy ra khi xóa người dùng.");-->
+<!--                }-->
+<!--            }-->
+<!--        };-->
+<!--        xhr.send();-->
+<!--    }-->
+
+
+
+</script>
+</body>
+</html>

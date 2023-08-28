@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Person Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      max-width: 500px;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #007bff;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    input[type="number"],
+    select,
+    input[type="text"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    select {
+      width: 100%;
+    }
+
+    input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    a {
+      text-align: center;
+      text-decoration: none;
+      color: #007bff;
+      display: block;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Person Form</h1>
+  <form th:action="@{/process}" method="post">
+    <label>Total Amount:</label>
+    <input type="number" step="0.01" name="totalAmount" th:value="${totalAmount}" />
+
+    <label>Select Users:</label>
+    <select name="selectedUserIds" multiple="multiple">
+      <option th:each="person : ${persons}" th:value="${person.id}" th:text="${person.name}"></option>
+    </select>
+
+    <label>Transaction Type:</label>
+    <select name="transactionType">
+      <option value="subtract_avg">Subtract Average</option>
+      <option value="add_avg">Add Average</option>
+      <option value="subtract_individual">Subtract Individual</option>
+      <option value="add_individual">Add Individual</option>
+    </select>
+
+    <label>Description:</label>
+    <input type="text" name="description" />
+
+    <input type="submit" value="Submit" />
+  </form>
+  <a href="/">Back to Home</a>
+</div>
+</body>
+</html>
+
+

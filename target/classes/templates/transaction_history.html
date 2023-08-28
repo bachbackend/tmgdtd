@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Transaction History</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 30px 0;
+      color: #555;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 255, 0.1); /* Thay đổi màu xanh lá (#4CAF50) thành màu xanh dương (rgba(0, 0, 255, 0.1)) */
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+      background-color: #f2f2f2;
+      transition: background-color 0.3s ease;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8f8f8;
+    }
+
+    th {
+      background-color: #0074D9; /* Thay đổi màu xanh (#4CAF50) thành màu xanh dương (#0074D9) */
+      color: white;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      color: #0074D9; /* Thay đổi màu xanh (#4CAF50) thành màu xanh dương (#0074D9) */
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    a:hover {
+      color: #0056b3; /* Thay đổi màu xanh (#4CAF50) thành màu xanh dương (#0056b3) */
+      transition: color 0.3s ease;
+    }
+
+    /* Responsive styles for smaller screens */
+    @media screen and (max-width: 768px) {
+      h1 {
+        font-size: 24px;
+      }
+      table {
+        font-size: 14px;
+      }
+      th, td {
+        padding: 10px;
+      }
+      a {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>Transaction History</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Transaction ID</th>
+    <th>User</th>
+    <th>User ID</th>
+    <th>Transaction Date</th>
+    <th>Transaction Type</th>
+    <th>Balance Change</th>
+    <th>Description</th>
+    <th>Transaction Amount</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <!-- Iterate through the transaction history and display the details -->
+  <tr th:each="transaction : ${transactionHistoryList}">
+    <td th:text="${transaction.id}"></td>
+    <td th:text="${transaction.person.name}"></td>
+    <td th:text="${transaction.person.id}"></td>
+    <td th:text="${transaction.transactionDate}"></td>
+    <td th:text="${transaction.transactionType}"></td>
+    <td th:text="${transaction.subTotal}"></td>
+    <td th:text="${transaction.description}"></td>
+    <td th:text="${transaction.transactionAmount}"></td>
+
+  </tr>
+  </tbody>
+</table>
+<a href="/">Back to Home</a>
+</body>
+</html>

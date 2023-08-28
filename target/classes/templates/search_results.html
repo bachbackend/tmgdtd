@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+<h1>Search Results</h1>
+
+<!-- Form for searching -->
+<form th:action="@{/search}" th:object="${searchForm}" method="post">
+    <input type="text" th:field="*{name}" placeholder="Search by name" />
+    <button type="submit">Search</button>
+</form>
+
+
+
+<!-- Display search results -->
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Total money</th>
+    </tr>
+    <tr th:each="person : ${searchResults}">
+        <td th:text="${person.id}"></td>
+        <td th:text="${person.name}"></td>
+        <td th:text="${person.age}"></td>
+        <td th:text="${person.email}"></td>
+        <td th:text="${person.phoneNumber}"></td>
+        <td th:text="${person.formattedTotalMoney}"></td>
+    </tr>
+</table>
+
+<br>
+<a href="/">Back to Home</a>
+</body>
+</html></html>
